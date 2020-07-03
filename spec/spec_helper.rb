@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "getsafe/file_fetcher"
+require "file_fetcher"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

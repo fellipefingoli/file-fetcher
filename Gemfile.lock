@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    getsafe-file-fetcher (0.1.0)
+    file-fetcher (0.1.0)
       activemodel (= 6.0.3.2)
 
 GEM
@@ -49,7 +49,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemodel (~> 6.0, >= 6.0.3.2)
-  getsafe-file-fetcher!
+  file-fetcher!
   pry
   rake (~> 12.0)
   rspec (~> 3.0)
