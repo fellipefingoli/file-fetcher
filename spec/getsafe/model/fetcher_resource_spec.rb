@@ -19,6 +19,8 @@ RSpec.describe Getsafe::Model::FetcherResource do
 
       it "freezes attributes from changes" do
         expect { subject.from_path="/new/path/to/file" }.to raise_error(ArgumentError)
+        expect { subject.to_path="/new/path/to/file" }.to raise_error(ArgumentError)
+        expect { subject.tempfile_path="/new/path/to/file" }.to raise_error(ArgumentError)
       end
     end
   end
