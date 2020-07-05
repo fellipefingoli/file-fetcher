@@ -1,4 +1,4 @@
-RSpec.describe FileFetcher::Service::FileReader::RawText do
+RSpec.describe FileFetcher::Services::FileReader::RawText do
   describe '#read_file' do
     let(:file_path) { 'spec/fixtures/images_paths.txt' }
 

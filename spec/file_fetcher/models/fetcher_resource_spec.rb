@@ -1,4 +1,4 @@
-RSpec.describe FileFetcher::Model::FetcherResource do
+RSpec.describe FileFetcher::Models::FetcherResource do
   subject do
     described_class.new({
       from_path: "/path/to/file",
