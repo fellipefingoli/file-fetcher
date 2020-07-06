@@ -17,6 +17,8 @@ module FileFetcher
     module Requesters
       autoload :Http, "file_fetcher/services/requesters/http"
     end
+
+    autoload :Fetcher, "file_fetcher/services/fetcher"
   end
   class Error < StandardError; end
   # Your code goes here...
