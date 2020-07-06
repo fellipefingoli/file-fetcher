@@ -12,10 +12,8 @@ module FileFetcher::Services
 
     def request_file
       response = Net::HTTP.get_response(uri)
-
-      File.open( TEMPFILE_PATH + tempfile_name, 'wb') do |file|
-        file.write response.body
-      end
+      tempfile = TEMPFILE_PATH + tempfile_name
+      File.open(tempfile, 'wb').write response.body
     end
 
     private
