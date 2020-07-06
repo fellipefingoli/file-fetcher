@@ -19,6 +19,8 @@ module FileFetcher
     end
 
     autoload :Fetcher, "file_fetcher/services/fetcher"
+    autoload :FetcherBuilder, "file_fetcher/services/fetcher_builder"
+    autoload :FetcherHandler, "file_fetcher/services/fetcher_handler"
   end
   class Error < StandardError; end
   # Your code goes here...
