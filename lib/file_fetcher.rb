@@ -1,5 +1,3 @@
-require 'active_support'
-
 require "file_fetcher/version"
 
 module FileFetcher
@@ -8,15 +6,17 @@ module FileFetcher
   end
 
   module Services
-    module FileDispatcher
-      autoload :Local, "file_fetcher/services/file_dispatcher/local"
+    module Dispatchers
+      autoload :Local, "file_fetcher/services/dispatchers/local"
     end
 
-    module FileReader
-      autoload :RawText, "file_fetcher/services/file_reader/raw_text"
+    module Readers
+      autoload :RawText, "file_fetcher/services/readers/raw_text"
     end
 
-    autoload :HttpRequest, "file_fetcher/services/http_request"
+    module Requesters
+      autoload :Http, "file_fetcher/services/requesters/http"
+    end
   end
   class Error < StandardError; end
   # Your code goes here...

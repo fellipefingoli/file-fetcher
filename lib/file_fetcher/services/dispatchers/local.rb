@@ -1,12 +1,6 @@
-module FileFetcher::Services::FileDispatcher
+module FileFetcher::Services::Dispatchers
   class Local
-    attr_reader :tempfile_path
-
-    def initialize(tempfile_path)
-      @tempfile_path = tempfile_path
-    end
-
-    def dispatch_file(destination_path)
+    def dispatch_file(tempfile_path, destination_path)
       file = File.open(tempfile_path, 'rb').read
       File.open(destination_path, 'wb').write file
 

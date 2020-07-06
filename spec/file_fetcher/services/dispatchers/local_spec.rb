@@ -1,16 +1,16 @@
-RSpec.describe FileFetcher::Services::FileDispatcher::Local do
+RSpec.describe FileFetcher::Services::Dispatchers::Local do
   describe "#dispatch_file" do
     let(:tempfile_path) { 'spec/fixtures/image.png' }
     let(:destination_path) { 'spec/tmp/image.png' }
 
-    subject { described_class.new(tempfile_path) }
+    subject { described_class.new }
 
     it 'return object with persisted attribute true' do
-      expect(subject.dispatch_file(destination_path).persisted).to be true
+      expect(subject.dispatch_file(tempfile_path, destination_path).persisted).to be true
     end 
 
     context 'write new file' do
-      before { subject.dispatch_file(destination_path) }
+      before { subject.dispatch_file(tempfile_path, destination_path) }
 
       it 'in destination path' do
         expect(File).to exist(destination_path)
