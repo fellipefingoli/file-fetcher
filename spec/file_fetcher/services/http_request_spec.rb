@@ -14,16 +14,22 @@ RSpec.describe FileFetcher::Services::HttpRequest do
       to_return(status: 200, body: image_fixture, headers: {})
       
       allow(subject).to receive(:tempfile_name).and_return('tempfile_123')
-      
-      subject.request_file
     end
 
-    it 'write file in temporary path' do
-      expect(File).to exist(tempfile_path)
+    it 'return tempfile_path in an object' do
+      expect(subject.request_file.tempfile_path).to eq(tempfile_path)
     end
+    
+    context 'write file' do
+      before { subject.request_file }
 
-    it 'tempfile has same data from downloaded file' do
-      expect(File.open(tempfile_path, 'r').read).to eq(image_fixture) 
+      it 'in temporary path' do
+        expect(File).to exist(tempfile_path)
+      end
+
+      it 'with same data from downloaded file' do
+        expect(File.open(tempfile_path, 'r').read).to eq(image_fixture) 
+      end
     end
 
     after do

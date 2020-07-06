@@ -14,6 +14,7 @@ module FileFetcher::Services
       response = Net::HTTP.get_response(uri)
       tempfile = TEMPFILE_PATH + tempfile_name
       File.open(tempfile, 'wb').write response.body
+      OpenStruct.new({ tempfile_path: tempfile })
     end
 
     private
