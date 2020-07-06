@@ -4,9 +4,9 @@ module FileFetcher::Models
   class FetcherResource
     include ActiveModel::Model
 
-    attr_reader :from_path, :to_path, :tempfile_path
+    attr_accessor :from_path, :to_path, :tempfile_path
 
-    validates_presence_of :from_path, :to_path, :tempfile_path
+    validates_presence_of :from_path, :to_path
 
     %w(from_path to_path tempfile_path).each do |method|
       class_eval <<-EVAL, __FILE__, __LINE__
