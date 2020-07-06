@@ -8,11 +8,15 @@ module FileFetcher
   end
 
   module Services
-    autoload :HttpRequest, "file_fetcher/services/http_request"
+    module FileDispatcher
+      autoload :Local, "file_fetcher/services/file_dispatcher/local"
+    end
 
     module FileReader
       autoload :RawText, "file_fetcher/services/file_reader/raw_text"
     end
+
+    autoload :HttpRequest, "file_fetcher/services/http_request"
   end
   class Error < StandardError; end
   # Your code goes here...
