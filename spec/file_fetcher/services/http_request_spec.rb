@@ -9,14 +9,12 @@ RSpec.describe FileFetcher::Services::HttpRequest do
     subject { described_class.new(file_path) }
 
     before do
-      stub_const("FileFetcher::Services::HttpRequest::TEMPFILE_NAME",
-        -> { 'tempfile_123' }
-      )
-
       stub_request(:get, file_path).
-        with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
-        to_return(status: 200, body: image_fixture, headers: {})
-
+      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: image_fixture, headers: {})
+      
+      allow(subject).to receive(:tempfile_name).and_return('tempfile_123')
+      
       subject.request_file
     end
 
