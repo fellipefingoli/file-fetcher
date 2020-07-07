@@ -18,11 +18,11 @@ module FileFetcher::Services
     end
 
     def fetch_all(&block)
-      fetchers.map do |fetch|
-        yield fetch
+      fetchers.map do |fetcher|
+        yield fetcher
         OpenStruct.new({
-          resource: fetch.resource,
-          fetched: fetch.fetched?
+          resource: fetcher.resource,
+          fetched: fetcher.fetched?
         })
       end
     end

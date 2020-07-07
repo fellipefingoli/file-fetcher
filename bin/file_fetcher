@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "file_fetcher"
+
+def process_argv(option)
+  case option
+  when '-h', '--help'
+    puts <<-HEREDOC
+FileFetcher #{FileFetcher::VERSION}
+
+How to use:
+  file_fetcher <resource_path> <options>
+
+  Options:
+    -h,  --help                      Prints this help
+    -F,  --file=FILE                 Read files from a file
+HEREDOC
+    exit
+  when '-F'
+    @options[:read_file] = true
+  when /^--file=(.*)$/m
+    @options[:read_file] = true
+    @resource_paths = $1
+  else
+    @resource_paths = [option]
+  end
+end
+
+@options = {}
+
+ARGV.each do |option|
+  process_argv(option)
+end
+
+FileFetcher::API.fetch_and_dispatch(@resource_paths, @options)

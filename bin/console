@@ -5,6 +5,4 @@ require "file_fetcher"
 
 require "irb"
 
-FileFetcher::API.fetch_and_dispatch('spec/fixtures/images_paths.txt', {read_file: true})
-
 IRB.start(__FILE__)

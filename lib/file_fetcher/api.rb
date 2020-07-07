@@ -14,6 +14,7 @@ module FileFetcher::API
     end
     
     fetcher_handler.fetch_all do |fetcher|
+      fetcher.resource.freeze!
       fetcher.request(options)
       fetcher.dispatch(options)
     end
@@ -45,7 +46,7 @@ module FileFetcher::API
       {
         tempfile_path: 'tmp/',
         destination_path: 'fetched_files/', 
-        read_file: true,
+        read_file: false,
         reader_type: 'raw_text',
         request_type: 'http',
         dispatch_type: 'local'

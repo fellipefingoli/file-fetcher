@@ -11,7 +11,7 @@ module FileFetcher::Services
     end
 
     def build
-      resource_paths = read_file_resource if read_file
+      @resource_paths = read_file_resource if read_file
       resource_paths.each do |resource_path|
         resource = FileFetcher::Models::FetcherResource.new({
           from_path: resource_path,

@@ -16,11 +16,11 @@ module FileFetcher::Models
     end
 
     def freeze!
-      @freeze = true
+      @freezed = true
     end
 
     def freezed?
-      @freeze
+      @freezed
     end
   end
 end

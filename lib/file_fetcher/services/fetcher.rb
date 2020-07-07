@@ -16,7 +16,7 @@ module FileFetcher::Services
 
     def dispatch(options={})
       result = dispatcher.dispatch_file(@tempfile_path, resource.to_path, options)
-      @fetched = result.dispatched
+      @fetched = result.persisted
     end
 
     def fetched?
