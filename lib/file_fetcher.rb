@@ -1,10 +1,19 @@
-require "file_fetcher/version"
+require "active_model"
+require "active_support"
+require "active_support/core_ext/string/inflections.rb"
+require "ostruct"
+require "net/http"
+
+require_relative "file_fetcher/api"
+require_relative "file_fetcher/version"
+require_relative "file_fetcher/models/fetcher_resource"
+require_relative "file_fetcher/services/fetcher"
+require_relative "file_fetcher/services/fetcher_builder"
+require_relative "file_fetcher/services/fetcher_handler"
+require_relative "file_fetcher/services/resources_handler"
+
 
 module FileFetcher
-  module Models
-    autoload :FetcherResource, "file_fetcher/models/fetcher_resource"
-  end
-
   module Services
     module Dispatchers
       autoload :Local, "file_fetcher/services/dispatchers/local"
@@ -17,12 +26,5 @@ module FileFetcher
     module Requesters
       autoload :Http, "file_fetcher/services/requesters/http"
     end
-
-    autoload :Fetcher, "file_fetcher/services/fetcher"
-    autoload :FetcherBuilder, "file_fetcher/services/fetcher_builder"
-    autoload :FetcherHandler, "file_fetcher/services/fetcher_handler"
-    autoload :ResourcesHandler, "file_fetcher/services/resources_handler"
   end
-  class Error < StandardError; end
-  # Your code goes here...
 end

@@ -1,7 +1,5 @@
 module FileFetcher::Services::Requesters
   class Http
-    require 'net/http'
-
     TEMPFILE_PATH = "spec/tmp/"
     
     def request_file(file_path)

@@ -16,6 +16,7 @@ module FileFetcher::Services
         fetcher_builder.set_requester(request_type)
         fetcher_builder.set_dispatcher(dispatch_type)
         fetchers << fetcher_builder.fetcher
+        fetcher_builder.reset
       end
     end
 

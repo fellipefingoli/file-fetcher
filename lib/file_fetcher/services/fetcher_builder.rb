@@ -1,6 +1,3 @@
-require "active_support"
-require "active_support/core_ext/string/inflections.rb"
-
 module FileFetcher::Services
   class FetcherBuilder
     def fetcher
@@ -9,6 +6,10 @@ module FileFetcher::Services
 
     def reset
       @fetcher = Fetcher.new
+    end
+
+    def set_resource(resource)
+      fetcher.resource = resource
     end
     
     def set_requester(type)

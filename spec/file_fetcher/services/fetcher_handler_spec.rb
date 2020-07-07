@@ -16,13 +16,15 @@ RSpec.describe FileFetcher::Services::FetcherHandler do
       allow(fetcher_builder).to receive(:set_resource).with(resource)
       allow(fetcher_builder).to receive(:set_requester).with('http')
       allow(fetcher_builder).to receive(:set_dispatcher).with('local')
+      allow(fetcher_builder).to receive(:reset)
     end
 
     it 'build fetcher' do
       expect(fetcher_builder).to receive(:set_resource).with(resource)
       expect(fetcher_builder).to receive(:set_requester).with('http')
       expect(fetcher_builder).to receive(:set_dispatcher).with('local')
-      
+      expect(fetcher_builder).to receive(:reset)
+
       subject.build([resource])
     end
   end

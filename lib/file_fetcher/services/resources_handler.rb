@@ -1,6 +1,3 @@
-require "active_support"
-require "active_support/core_ext/string/inflections.rb"
-
 module FileFetcher::Services
   class ResourcesHandler
     attr_accessor :resource_paths, :read_file, :reader_type, :destination_path, :resources
@@ -9,7 +6,7 @@ module FileFetcher::Services
       @resource_paths = resource_paths
       @read_file = options.fetch(:read_file, false)
       @reader_type = options.fetch(:reader_type, 'raw_text')
-      @destination_path = options.fetch(:destination_path, 'files_fetched/')
+      @destination_path = options.fetch(:destination_path, 'fetched_files/')
       @resources = []
     end
 
@@ -18,7 +15,7 @@ module FileFetcher::Services
       resource_paths.each do |resource_path|
         resource = FileFetcher::Models::FetcherResource.new({
           from_path: resource_path,
-          to_path: destination_path
+          to_path: destination_path + File.basename(resource_path)
         })
         resources << resource if resource.valid?
       end

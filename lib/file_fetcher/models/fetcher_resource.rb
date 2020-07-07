@@ -1,5 +1,3 @@
-require "active_model"
-
 module FileFetcher::Models
   class FetcherResource
     include ActiveModel::Model
