@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install getsafe-file_fetcher
+    $ gem install file_fetcher
 
 ## Usage
 
