@@ -2,7 +2,6 @@ require "active_model"
 require "active_support"
 require "active_support/core_ext/string/inflections.rb"
 require "ostruct"
-require "net/http"
 
 require_relative "file_fetcher/api"
 require_relative "file_fetcher/version"

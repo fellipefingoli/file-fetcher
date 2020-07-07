@@ -12,10 +12,10 @@ RSpec.describe FileFetcher::Services::Fetcher do
   end
   
   describe '#request' do
-    before { allow(requester).to receive(:request_file).with('from/path').and_return(OpenStruct.new(tempfile_path: 'tempfile/path')) }
+    before { allow(requester).to receive(:request_file).with('from/path', {}).and_return(OpenStruct.new(tempfile_path: 'tempfile/path')) }
 
     it 'request file' do
-      expect(requester).to receive(:request_file).with('from/path')
+      expect(requester).to receive(:request_file).with('from/path', {})
 
       subject.request
     end
@@ -24,11 +24,11 @@ RSpec.describe FileFetcher::Services::Fetcher do
   describe '#dispatch' do
     before do
       subject.instance_variable_set(:@tempfile_path, 'tempfile/path')
-      allow(dispatcher).to receive(:dispatch_file).with('tempfile/path','to/path').and_return(OpenStruct.new(persisted: true))
+      allow(dispatcher).to receive(:dispatch_file).with('tempfile/path','to/path', {}).and_return(OpenStruct.new(persisted: true))
     end
 
     it 'dispatch file' do
-      expect(dispatcher).to receive(:dispatch_file).with('tempfile/path','to/path')
+      expect(dispatcher).to receive(:dispatch_file).with('tempfile/path','to/path', {})
 
       subject.dispatch
     end

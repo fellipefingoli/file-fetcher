@@ -14,18 +14,14 @@ RSpec.describe FileFetcher::Services::FetcherHandler do
   describe '#build' do
     before do
       allow(fetcher_builder).to receive(:set_resource).with(resource)
-      allow(fetcher_builder).to receive(:set_requester).with('http')
-      allow(fetcher_builder).to receive(:set_dispatcher).with('local')
       allow(fetcher_builder).to receive(:reset)
     end
 
     it 'build fetcher' do
       expect(fetcher_builder).to receive(:set_resource).with(resource)
-      expect(fetcher_builder).to receive(:set_requester).with('http')
-      expect(fetcher_builder).to receive(:set_dispatcher).with('local')
       expect(fetcher_builder).to receive(:reset)
 
-      subject.build([resource])
+      subject.build([resource]){|x|}
     end
   end
 
@@ -40,19 +36,18 @@ RSpec.describe FileFetcher::Services::FetcherHandler do
     end
 
     it 'make request and dispatch' do
-      expect(fetcher).to receive(:request)
-      expect(fetcher).to receive(:dispatch)
+      expect(fetcher).to receive(:resource)
+      expect(fetcher).to receive(:fetched?)
 
-      subject.fetch_all
+      subject.fetch_all{|x|}
     end
 
     it 'return arrray of objects with resource' do
-      expect(subject.fetch_all.first.resource).to eq(resource) 
+      expect(subject.fetch_all{|x|}.first.resource).to eq(resource) 
     end
 
     it 'return array of objects with fetched true' do
-      expect(subject.fetch_all.first.fetched).to be true 
+      expect(subject.fetch_all{|x|}.first.fetched).to be true 
     end
-
   end
 end

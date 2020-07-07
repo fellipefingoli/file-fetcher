@@ -4,9 +4,9 @@ module FileFetcher::Services
 
     def initialize(resource_paths, options={})
       @resource_paths = resource_paths
-      @read_file = options.fetch(:read_file, false)
-      @reader_type = options.fetch(:reader_type, 'raw_text')
-      @destination_path = options.fetch(:destination_path, 'fetched_files/')
+      @read_file = options.fetch(:read_file)
+      @reader_type = options.fetch(:reader_type)
+      @destination_path = options.fetch(:destination_path)
       @resources = []
     end
 

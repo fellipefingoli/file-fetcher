@@ -2,7 +2,9 @@ RSpec.describe FileFetcher::Services::ResourcesHandler do
   let(:resource_path) { 'path/to/resource' }
   let(:options) do
     {
-      read_file: true
+      read_file: true,
+      reader_type: 'raw_text',
+      destination_path: 'destination/path'
     }
   end
   
