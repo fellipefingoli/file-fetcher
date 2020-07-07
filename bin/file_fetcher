@@ -21,7 +21,7 @@ HEREDOC
     @options[:read_file] = true
   when /^--file=(.*)$/m
     @options[:read_file] = true
-    @resource_paths = $1
+    @resource_paths = [$1]
   else
     @resource_paths = [option]
   end
@@ -33,4 +33,8 @@ ARGV.each do |option|
   process_argv(option)
 end
 
-FileFetcher::API.fetch_and_dispatch(@resource_paths, @options)
+FileFetcher::API.fetch_and_dispatch(@resource_paths, @options).each_with_index do |fetcher, i|
+  puts "#File#{i+1}: #{fetcher.resource.from_path} -> #{fetcher.resource.to_path}" if fetcher.fetched
+end
+
+

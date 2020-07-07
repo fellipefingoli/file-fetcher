@@ -1,6 +1,6 @@
 RSpec.describe FileFetcher::Services::Readers::RawText do
   describe '#read_file' do
-    let(:file_path) { 'spec/fixtures/images_paths.txt' }
+    let(:file_path) { ['spec/fixtures/images_paths.txt'] }
 
     subject { described_class.new }
 

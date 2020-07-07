@@ -34,7 +34,7 @@ Execute `--help` option for more information about using
 
 Exemple:
 
-    $ bin/file_fetcher bin/image_paths.txt -F
+    $ bin/file_fetcher bin/file_paths.txt -F
 
 ## Development
 
