@@ -1,8 +1,6 @@
-# Getsafe::FileFetcher
+# FileFetcher
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/file_fetcher`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a simple gem that fetch files from internet and dispatch them to where you want!
 
 ## Installation
 
@@ -22,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### CommandLine
+
+Execute:
+
+    $ bin/setup
+
+And then execute:
+
+    $ bin/file_fetcher <RESOURCE_PATH> <OPTIONS>
+
+Execute `--help` option for more information about using
+
+Exemple:
+
+    $ bin/file_fetcher bin/image_paths.txt -F
 
 ## Development
 
@@ -32,4 +44,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/getsafe-file_fetcher.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fellipefingoli/file_fetcher.
