@@ -36,11 +36,6 @@ ARGV.each do |option|
   process_argv(option)
 end
 
-FileFetcher::API.fetch_and_dispatch(@resource_paths, @options).each do |result|
-  puts "#File#{i+1}: #{fetcher.resource.from_path} -> #{fetcher.resource.to_path}" if fetcher.fetched
+FileFetcher::API.fetch_and_dispatch(@resource_paths, @options).each_with_index do |result|
+  puts "#File#{i+1}: #{result.resource.from_path} -> #{result.resource.to_path}" if result.fetched
 end
-
-
-
-
-
