@@ -10,8 +10,8 @@ module FileFetcher::Services
 
     def build(resources, &block)
       resources.each do |resource|
-        yield fetcher_builder
         fetcher_builder.set_resource(resource)
+        yield fetcher_builder
         fetchers << fetcher_builder.fetcher
         fetcher_builder.reset
       end
@@ -19,12 +19,22 @@ module FileFetcher::Services
 
     def fetch_all(&block)
       fetchers.map do |fetcher|
-        yield fetcher
-        OpenStruct.new({
-          resource: fetcher.resource,
-          fetched: fetcher.fetched?
-        })
+        fetch(fetcher, &block)
       end
+    end
+
+    def fetch_all_async(&block)
+      fetchers.map do |fetcher|
+        Thread.new { fetch(fetcher, &block) }
+      end
+    end
+
+    def fetch(fetcher, &block)
+      yield fetcher
+      OpenStruct.new({
+        resource: fetcher.resource,
+        fetched: fetcher.fetched?
+      })
     end
   end
 end

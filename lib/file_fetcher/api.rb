@@ -7,22 +7,14 @@ module FileFetcher::API
     fetcher_builder = set_fetcher_builder()
     fetcher_handler = set_fetcher_handler(fetcher_builder, options)
     resources_handler.build
-
-    fetcher_handler.build(resources_handler.resources) do |fetcher|
-      fetcher.set_requester(options[:request_type])
-      fetcher.set_dispatcher(options[:dispatch_type])
-    end
     
-    fetcher_handler.fetch_all do |fetcher|
-      fetcher.resource.freeze!
-      fetcher.request(options)
-      fetcher.dispatch(options)
-    end
+    build_fetcher(fetcher_handler, resources_handler, options)
+    fetch_all(fetcher_handler, options)
   end
 
   private
     def set_options(options)
-      %w(tempfile_path destination_path read_file reader_type request_type dispatch_type).each do |option|
+      %w(tempfile_path destination_path read_file reader_type request_type dispatch_type concurrent).each do |option|
         option = option.to_sym
         options[option] = options.fetch(option, default_options[option])
       end
@@ -42,6 +34,21 @@ module FileFetcher::API
       FileFetcher::Services::FetcherHandler.new(fetcher_builder, options)
     end
 
+    def build_fetcher(fetcher_handler, resources_handler, options)
+      fetcher_handler.build(resources_handler.resources) do |fetcher_builder|
+        fetcher_builder.set_requester(options[:request_type])
+        fetcher_builder.set_dispatcher(options[:dispatch_type])
+        fetcher_builder.fetcher.resource.freeze!
+      end
+    end
+
+    def fetch_all(fetcher_handler, options)
+      fetcher_handler.fetch_all do |fetcher|
+        fetcher.request(options)
+        fetcher.dispatch(options)
+      end
+    end
+
     def default_options
       {
         tempfile_path: 'tmp/',
@@ -49,7 +56,8 @@ module FileFetcher::API
         read_file: false,
         reader_type: 'raw_text',
         request_type: 'http',
-        dispatch_type: 'local'
+        dispatch_type: 'local',
+        concurrent: false
       }
     end
 end
