@@ -47,7 +47,7 @@ GEM
     rspec-support (3.9.3)
     safe_yaml (1.0.5)
     thread_safe (0.3.6)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     webmock (3.8.3)
       addressable (>= 2.3.6)
